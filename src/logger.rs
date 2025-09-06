@@ -30,14 +30,19 @@ pub struct LoggerOptions {
 
 impl LoggerOptions {
     /// 创建新的日志配置选项
-    pub fn new(level: &str) -> Self {
+    pub fn new() -> Self {
         Self {
-            level: level.to_string(),
+            level: "info".to_string(),
             enable_file_logging: false,
             prefix: None,
             log_directory: None,
             retention_days: None,
         }
+    }
+    /// 设置日志等级
+    pub fn with_level(mut self, level: &str) -> Self {
+        self.level = level.to_string();
+        self
     }
     /// 设置是否启用文件日志记录
     pub fn with_file_logging(mut self, enable: bool) -> Self {
@@ -112,7 +117,7 @@ where
 
 pub fn init(options: Option<LoggerOptions>) {
 
-    let options = options.unwrap_or_else(|| LoggerOptions::new("info"));
+    let options = options.unwrap_or_else(|| LoggerOptions::new());
 
     let logger_level = parse_log_level(&options.level);
     let prefix = options.prefix.unwrap_or_else(|| "PuniYu".to_string());
