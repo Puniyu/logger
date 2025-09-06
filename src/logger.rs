@@ -112,10 +112,6 @@ where
 
 pub fn log_init(options: Option<LoggerOptions>) {
 
-    if INIT_LOGGER.get().is_some() {
-        return;
-    }
-
     let options = options.unwrap_or_else(|| LoggerOptions::new("info"));
 
     let logger_level = parse_log_level(&options.level);
@@ -154,8 +150,7 @@ pub fn log_init(options: Option<LoggerOptions>) {
     }
     let subscriber = tracing_subscriber::registry().with(layers);
 
-    tracing::subscriber::set_global_default(subscriber)
-        .unwrap();
+    tracing::subscriber::set_global_default(subscriber).ok();
 }
 
 pub fn set_log_level(level: &str) {
