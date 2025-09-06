@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/Puniyu/logger/compare/v0.1.3...v0.1.4) (2025-09-06)
+
+
+### ♻️ 代码重构
+
+* **logger:** 重构 LoggerOptions 构造方式 ([541d471](https://github.com/Puniyu/logger/commit/541d471dcdd409bdfd2dffe8d3dd8c5e3463b34b))
+
 ## [0.1.3](https://github.com/Puniyu/logger/compare/v0.1.2...v0.1.3) (2025-09-06)
 
 
