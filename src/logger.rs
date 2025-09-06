@@ -14,7 +14,7 @@ use tracing_subscriber::{
 };
 
 static RELOAD_HANDLE: OnceLock<Handle<LevelFilter, Registry>> = OnceLock::new();
-static INIT_LOGGER: OnceLock<()> = OnceLock::new();
+
 pub struct LoggerOptions {
     /// 日志等级
     pub level: String,
@@ -110,7 +110,7 @@ where
     }
 }
 
-pub fn log_init(options: Option<LoggerOptions>) {
+pub fn init(options: Option<LoggerOptions>) {
 
     let options = options.unwrap_or_else(|| LoggerOptions::new("info"));
 
@@ -121,7 +121,6 @@ pub fn log_init(options: Option<LoggerOptions>) {
     if RELOAD_HANDLE.set(reload_handle).is_err() {
         return;
     }
-    INIT_LOGGER.set(()).unwrap();
 
     let console_subscriber = tracing_subscriber::fmt::layer()
         .event_format(Formatter { prefix: prefix.clone(), color: true })
