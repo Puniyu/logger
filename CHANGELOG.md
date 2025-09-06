@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/Puniyu/logger/compare/v0.1.1...v0.1.2) (2025-09-06)
+
+
+### ♻️ 代码重构
+
+* **logger:** 优化日志初始化流程 ([f64d7ec](https://github.com/Puniyu/logger/commit/f64d7ecc90b15398b759b850cef72bc7dec59cdb))
+
 ## [0.1.1](https://github.com/Puniyu/logger/compare/v0.1.0...v0.1.1) (2025-09-05)
 
 
