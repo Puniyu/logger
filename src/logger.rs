@@ -155,6 +155,7 @@ pub fn init(options: Option<LoggerOptions>) {
     let subscriber = tracing_subscriber::registry().with(layers);
 
     tracing::subscriber::set_global_default(subscriber).ok();
+    tracing_log::LogTracer::init().ok();
 }
 
 pub fn set_log_level(level: &str) {
