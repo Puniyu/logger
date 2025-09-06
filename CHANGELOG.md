@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/Puniyu/logger/compare/v0.1.4...v0.1.5) (2025-09-06)
+
+
+### 🐛 错误修复
+
+* 修复log create无法使用 ([8325419](https://github.com/Puniyu/logger/commit/83254198e1a4234fbbb26aeaf73e8de44b31eed5))
+
 ## [0.1.4](https://github.com/Puniyu/logger/compare/v0.1.3...v0.1.4) (2025-09-06)
 
 
