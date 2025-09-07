@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/Puniyu/logger/compare/v0.1.5...v0.2.0) (2025-09-07)
+
+
+### ✨ 新功能
+
+* 导出 tracing 模块的日志宏 ([44d7f54](https://github.com/Puniyu/logger/commit/44d7f5400cf7286213a675b8440beb2de7c89e73))
+
 ## [0.1.5](https://github.com/Puniyu/logger/compare/v0.1.4...v0.1.5) (2025-09-06)
 
 
