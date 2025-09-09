@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/Puniyu/logger/compare/v0.2.1...v0.2.2) (2025-09-09)
+
+
+### ♻️ 代码重构
+
+* 更新 tracing_shared 的引用 ([ba65d5f](https://github.com/Puniyu/logger/commit/ba65d5fb64dcbabcef370161b33f83e6ce415ec4))
+
 ## [0.2.1](https://github.com/Puniyu/logger/compare/v0.2.0...v0.2.1) (2025-09-09)
 
 
