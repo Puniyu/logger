@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/Puniyu/logger/compare/v0.2.0...v0.2.1) (2025-09-09)
+
+
+### 📦️ 构建系统
+
+* **dependencies:** 更新依赖并添加 tracing-shared ([e6d2504](https://github.com/Puniyu/logger/commit/e6d2504cec9c0e3f0c28bc95b0f9abb72f35b4f3))
+
 ## [0.2.0](https://github.com/Puniyu/logger/compare/v0.1.5...v0.2.0) (2025-09-07)
 
 
