@@ -15,3 +15,4 @@ tracing-log = "0.2.0"
 tracing-appender = "0.2.3"
 chrono-tz = "0.10.4"
 owo-colors = "4.2.2"
+tracing-shared = { version = "0.1.5" }
