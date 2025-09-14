@@ -1,6 +1,6 @@
 [package]
 name = "puniyu_logger"
-version = "0.5.0"
+version = "0.5.1"
 description = "奈柚核心，logger核心实现"
 edition = "2024"
 repository = "https://github.com/PuniYu/logger"

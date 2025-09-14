@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/Puniyu/logger/compare/v0.5.0...v0.5.1) (2025-09-14)
+
+
+### ⚡️ 性能优化
+
+* **logger:** 移除日志 span 事件 ([78c0e07](https://github.com/Puniyu/logger/commit/78c0e072c65d5cff6a4430f6e9d7380ed506daa7))
+
 ## [0.5.0](https://github.com/Puniyu/logger/compare/v0.4.0...v0.5.0) (2025-09-14)
 
 
