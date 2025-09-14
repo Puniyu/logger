@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/Puniyu/logger/compare/v0.4.0...v0.5.0) (2025-09-14)
+
+
+### ✨ 新功能
+
+* **tracing:** 添加 span 事件并更新模块导出 ([4501ab0](https://github.com/Puniyu/logger/commit/4501ab02cf1694203bf9a81d838a1a6614c2aa61))
+
 ## [0.4.0](https://github.com/Puniyu/logger/compare/v0.3.0...v0.4.0) (2025-09-14)
 
 
