@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/Puniyu/logger/compare/v0.2.3...v0.3.0) (2025-09-14)
+
+
+### ✨ 新功能
+
+* **tracing:** 添加 span 和 event 的导入 ([d3f1bf8](https://github.com/Puniyu/logger/commit/d3f1bf82e8b02c2b56b3353ba830e37eb63b49d3))
+
 ## [0.2.3](https://github.com/Puniyu/logger/compare/v0.2.2...v0.2.3) (2025-09-14)
 
 
