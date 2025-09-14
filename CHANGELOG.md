@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/Puniyu/logger/compare/v0.3.0...v0.4.0) (2025-09-14)
+
+
+### ✨ 新功能
+
+* **tracing:** 添加 Level 枚举导入 ([7ae90fa](https://github.com/Puniyu/logger/commit/7ae90fa59afaf3849fa525c30e5df8b86b26f553))
+
 ## [0.3.0](https://github.com/Puniyu/logger/compare/v0.2.3...v0.3.0) (2025-09-14)
 
 
