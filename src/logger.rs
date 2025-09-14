@@ -1,19 +1,15 @@
 use chrono_tz::Asia::Shanghai;
 use owo_colors::OwoColorize;
 use std::fmt;
-use std::sync::OnceLock;
 use tracing::Subscriber;
 use tracing_appender::rolling::{RollingFileAppender, Rotation};
-use tracing_subscriber::reload::{self, Handle};
 use tracing_subscriber::{
-    Layer, Registry,
+    Layer,
     filter::LevelFilter,
     fmt::{FormatEvent, FormatFields},
     layer::SubscriberExt,
     registry::LookupSpan,
 };
-
-static RELOAD_HANDLE: OnceLock<Handle<LevelFilter, Registry>> = OnceLock::new();
 
 pub struct LoggerOptions {
     /// 日志等级
@@ -122,14 +118,9 @@ pub fn init(options: Option<LoggerOptions>) {
     let logger_level = parse_log_level(&options.level);
     let prefix = options.prefix.unwrap_or_else(|| "PuniYu".to_string());
 
-    let (filter, reload_handle) = reload::Layer::new(logger_level);
-    if RELOAD_HANDLE.set(reload_handle).is_err() {
-        return;
-    }
-
     let console_subscriber = tracing_subscriber::fmt::layer()
         .event_format(Formatter { prefix: prefix.clone(), color: true })
-        .with_filter(filter);
+        .with_filter(logger_level);
 
     let mut layers = vec![console_subscriber.boxed()];
 
@@ -156,13 +147,6 @@ pub fn init(options: Option<LoggerOptions>) {
 
     tracing::subscriber::set_global_default(subscriber).ok();
     tracing_log::LogTracer::init().ok();
-}
-
-pub fn set_log_level(level: &str) {
-    let logger_level = parse_log_level(level);
-    if let Some(handle) = RELOAD_HANDLE.get() {
-        handle.modify(|filter| *filter = logger_level).unwrap();
-    }
 }
 
 fn parse_log_level(level: &str) -> LevelFilter {
