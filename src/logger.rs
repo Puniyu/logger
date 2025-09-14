@@ -119,6 +119,7 @@ pub fn init(options: Option<LoggerOptions>) {
     let prefix = options.prefix.unwrap_or_else(|| "PuniYu".to_string());
 
     let console_subscriber = tracing_subscriber::fmt::layer()
+        .with_span_events(tracing_subscriber::fmt::format::FmtSpan::FULL)
         .event_format(Formatter { prefix: prefix.clone(), color: true })
         .with_filter(logger_level);
 
@@ -136,6 +137,7 @@ pub fn init(options: Option<LoggerOptions>) {
             .unwrap();
 
         let file_subscriber = tracing_subscriber::fmt::layer()
+            .with_span_events(tracing_subscriber::fmt::format::FmtSpan::FULL)
             .event_format(Formatter { prefix, color: false })
             .with_writer(file_appender)
             .with_ansi(false)
