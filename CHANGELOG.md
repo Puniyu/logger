@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/Puniyu/logger/compare/v0.2.2...v0.2.3) (2025-09-14)
+
+
+### ♻️ 代码重构
+
+* **logger:** 移除日志等级动态修改功能 ([51dafe4](https://github.com/Puniyu/logger/commit/51dafe4e90e81769eabe8abd81b6754fb16903c9))
+
 ## [0.2.2](https://github.com/Puniyu/logger/compare/v0.2.1...v0.2.2) (2025-09-09)
 
 
