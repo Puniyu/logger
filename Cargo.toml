@@ -9,10 +9,11 @@ license = "GPL-3.0-only"
 
 [dependencies]
 tracing = "0.1.41"
-tracing-subscriber = { version = "0.3", features = ["chrono"] }
+tracing-subscriber = { version = "0.3", features = ["chrono", "fmt"] }
 chrono = "0.4.41"
 tracing-log = "0.2.0"
 tracing-appender = "0.2.3"
 chrono-tz = "0.10.4"
 owo-colors = "4.2.2"
 tracing-shared = "0.1.5"
+strip-ansi-escapes = "0.2.1"

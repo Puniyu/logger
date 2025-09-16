@@ -1,6 +1,16 @@
+use owo_colors::OwoColorize;
 use puniyu_logger::{LoggerOptions, init as log_init};
 use tracing_log::log;
-
+#[test]
+fn log_with_options() {
+    let options = LoggerOptions::new()
+        .with_file_logging(true)
+        .with_log_directory("logs".to_string())
+        .with_retention_days(7);
+    log_init(Some(options));
+    let msg = "猪咪".fg_rgb::<255, 182, 193>();
+    log::info!("{}", msg);
+}
 #[test]
 fn log_info() {
     log_init(None);
@@ -29,12 +39,4 @@ fn log_trace() {
     log::trace!("{}", "trace");
 }
 
-#[test]
-fn log_with_options() {
-    let options = LoggerOptions::new()
-        .with_file_logging(true)
-        .with_log_directory("logs".to_string())
-        .with_retention_days(7);
-    log_init(Some(options));
-    log::info!("{}", "info with options");
-}
+

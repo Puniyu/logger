@@ -1,7 +1,7 @@
 use chrono_tz::Asia::Shanghai;
 use owo_colors::OwoColorize;
 use std::fmt;
-use tracing::Subscriber;
+use tracing::{field::{Field, Visit}, Subscriber};
 use tracing_appender::rolling::{RollingFileAppender, Rotation};
 use tracing_subscriber::{
     Layer,
@@ -47,8 +47,8 @@ impl LoggerOptions {
     }
 
     /// 设置自定义前缀
-    pub fn with_prefix(mut self, prefix: String) -> Self {
-        self.prefix = Some(prefix);
+    pub fn with_prefix(mut self, prefix: &str) -> Self {
+        self.prefix = Some(prefix.to_string());
         self
     }
 
@@ -64,6 +64,48 @@ impl LoggerOptions {
     }
 }
 
+struct MessageVisitor<'a, W> {
+    writer: &'a mut W,
+    strip_ansi: bool,
+}
+
+impl<'a, W> MessageVisitor<'a, W> {
+    fn new(writer: &'a mut W, strip_ansi: bool) -> Self {
+        Self { writer, strip_ansi }
+    }
+}
+
+impl<'a, W> Visit for MessageVisitor<'a, W>
+where
+    W: fmt::Write,
+{
+    fn record_str(&mut self, field: &Field, value: &str) {
+        if field.name() == "message" {
+            if self.strip_ansi {
+                // 移除 ANSI 转义序列
+                let stripped = strip_ansi_escapes::strip(value);
+                let clean_value = String::from_utf8_lossy(&stripped);
+                write!(self.writer, "{}", clean_value).unwrap();
+            } else {
+                write!(self.writer, "{}", value).unwrap();
+            }
+        }
+    }
+
+    fn record_debug(&mut self, field: &Field, value: &dyn fmt::Debug) {
+        if field.name() == "message" {
+            if self.strip_ansi {
+                let debug_str = format!("{:?}", value);
+                let stripped = strip_ansi_escapes::strip(debug_str);
+                let clean_value = String::from_utf8_lossy(&stripped);
+                write!(self.writer, "{}", clean_value).unwrap();
+            } else {
+                write!(self.writer, "{:?}", value).unwrap();
+            }
+        }
+    }
+}
+
 struct Formatter {
     prefix: String,
     color: bool,
@@ -76,7 +118,7 @@ where
 {
     fn format_event(
         &self,
-        ctx: &tracing_subscriber::fmt::FmtContext<'_, S, N>,
+        _: &tracing_subscriber::fmt::FmtContext<'_, S, N>,
         mut writer: tracing_subscriber::fmt::format::Writer<'_>,
         event: &tracing::Event<'_>,
     ) -> fmt::Result {
@@ -106,7 +148,10 @@ where
             write!(writer, "[{: <7}] ", logger_level)?;
         }
 
-        ctx.format_fields(writer.by_ref(), event)?;
+        let mut writer_ref = writer.by_ref();
+        let mut visitor = MessageVisitor::new(&mut writer_ref, !self.color);
+        event.record(&mut visitor);
+
         writeln!(writer)
     }
 }
