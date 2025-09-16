@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.3](https://github.com/Puniyu/logger/compare/v0.5.2...v0.5.3) (2025-09-16)
+
+
+### 🐛 错误修复
+
+* **logger:** 修复日志颜色导致的垃圾值问题 ([c9f16a0](https://github.com/Puniyu/logger/commit/c9f16a0be56a75f9bd5c3ef322ee1cc416e07b6d))
+
 ## [0.5.2](https://github.com/Puniyu/logger/compare/v0.5.1...v0.5.2) (2025-09-16)
 
 
