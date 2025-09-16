@@ -233,7 +233,7 @@ dependencies = [
 
 [[package]]
 name = "puniyu_logger"
-version = "0.5.2"
+version = "0.5.3"
 dependencies = [
  "chrono",
  "chrono-tz",
