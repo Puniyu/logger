@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.2](https://github.com/Puniyu/logger/compare/v0.5.1...v0.5.2) (2025-09-16)
+
+
+### 📦️ 构建系统
+
+* 添加 owo_colors 依赖 ([46fc324](https://github.com/Puniyu/logger/commit/46fc324d5245ee39375860beda77dcd4c9bbb30c))
+
 ## [0.5.1](https://github.com/Puniyu/logger/compare/v0.5.0...v0.5.1) (2025-09-14)
 
 
