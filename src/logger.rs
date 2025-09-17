@@ -161,10 +161,11 @@ pub fn init(options: Option<LoggerOptions>) {
     let options = options.unwrap_or_else(|| LoggerOptions::new());
 
     let logger_level = parse_log_level(&options.level);
-    let prefix = options.prefix.unwrap_or_else(|| "PuniYu".to_string());
+    let prefix_str = options.prefix.as_deref().unwrap_or("PuniYu");
+    let console_prefix = options.prefix.as_deref().unwrap_or("puniyu");
 
     let console_subscriber = tracing_subscriber::fmt::layer()
-        .event_format(Formatter { prefix: prefix.clone(), color: true })
+        .event_format(Formatter { prefix: prefix_str.to_string(), color: true })
         .with_filter(logger_level);
 
     let mut layers = vec![console_subscriber.boxed()];
@@ -174,14 +175,14 @@ pub fn init(options: Option<LoggerOptions>) {
         let _ = std::fs::create_dir_all(&log_dir);
         let file_appender = RollingFileAppender::builder()
             .rotation(Rotation::DAILY)
-            .filename_prefix("puniyu")
+            .filename_prefix(console_prefix)
             .filename_suffix("log")
             .max_log_files(options.retention_days.unwrap_or(7) as usize)
             .build(&log_dir)
             .unwrap();
 
         let file_subscriber = tracing_subscriber::fmt::layer()
-            .event_format(Formatter { prefix, color: false })
+            .event_format(Formatter { prefix: prefix_str.to_string(), color: false })
             .with_writer(file_appender)
             .with_ansi(false)
             .with_filter(logger_level);
