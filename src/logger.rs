@@ -164,7 +164,6 @@ pub fn init(options: Option<LoggerOptions>) {
     let logger_level = parse_log_level(&options.level);
     let prefix = options.prefix.as_deref().unwrap_or("puniyu");
     let prefix_str = prefix.to_case(Case::Pascal);
-    let console_prefix = prefix.to_case(Case::Snake);
 
     let console_subscriber = tracing_subscriber::fmt::layer()
         .event_format(Formatter { prefix: prefix_str.to_string(), color: true })
@@ -177,7 +176,7 @@ pub fn init(options: Option<LoggerOptions>) {
         let _ = std::fs::create_dir_all(&log_dir);
         let file_appender = RollingFileAppender::builder()
             .rotation(Rotation::DAILY)
-            .filename_prefix(console_prefix)
+            .filename_prefix(prefix.to_case(Case::Lower))
             .filename_suffix("log")
             .max_log_files(options.retention_days.unwrap_or(7) as usize)
             .build(&log_dir)
