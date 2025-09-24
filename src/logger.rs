@@ -10,6 +10,7 @@ use tracing_subscriber::{
     layer::SubscriberExt,
     registry::LookupSpan,
 };
+use convert_case::{Case, Casing};
 
 pub struct LoggerOptions {
     /// 日志等级
@@ -161,8 +162,9 @@ pub fn init(options: Option<LoggerOptions>) {
     let options = options.unwrap_or_else(|| LoggerOptions::new());
 
     let logger_level = parse_log_level(&options.level);
-    let prefix_str = options.prefix.as_deref().unwrap_or("PuniYu");
-    let console_prefix = options.prefix.as_deref().unwrap_or("puniyu");
+    let prefix = options.prefix.as_deref().unwrap_or("puniyu");
+    let prefix_str = prefix.to_case(Case::Pascal);
+    let console_prefix = prefix.to_case(Case::Snake);
 
     let console_subscriber = tracing_subscriber::fmt::layer()
         .event_format(Formatter { prefix: prefix_str.to_string(), color: true })
