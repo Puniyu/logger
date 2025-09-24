@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.5](https://github.com/Puniyu/logger/compare/v0.5.4...v0.5.5) (2025-09-24)
+
+
+### ♻️ 代码重构
+
+* **logger:** 支持自定义日志前缀格式 ([6f68865](https://github.com/Puniyu/logger/commit/6f68865314874428d39883ff2dda53fd5402bef9))
+
 ## [0.5.4](https://github.com/Puniyu/logger/compare/v0.5.3...v0.5.4) (2025-09-17)
 
 
